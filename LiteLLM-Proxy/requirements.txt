@@ -1,0 +1,3 @@
+litellm[proxy]
+boto3
+ell-ai

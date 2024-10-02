@@ -1,0 +1,4 @@
+haystack-ai
+amazon-bedrock-haystack
+datasets>=2.6.1
+sentence-transformers>=2.2.0

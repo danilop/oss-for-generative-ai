@@ -1,0 +1,5 @@
+langchain
+langchain-aws
+langserve[all]
+langgraph
+transformers # For tokens

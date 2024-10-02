@@ -1,0 +1,7 @@
+model_list:
+  - model_name: aws
+    litellm_params:
+      model: "bedrock/anthropic.claude-3-5-sonnet-20240620-v1:0"
+      aws_region_name: "us-east-1"
+litellm_settings:
+  drop_params: True

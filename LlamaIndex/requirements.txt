@@ -1,0 +1,6 @@
+llama-index
+llama-index-llms-bedrock
+llama-index-llms-bedrock-converse
+llama-index-embeddings-bedrock
+numpy
+requests
