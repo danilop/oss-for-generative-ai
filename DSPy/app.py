@@ -1,5 +1,4 @@
 import dspy
-import random
 
 # Set up the LM.
 lm = dspy.LM("bedrock/anthropic.claude-3-5-sonnet-20240620-v1:0")
@@ -7,11 +6,13 @@ lm = dspy.LM("bedrock/anthropic.claude-3-5-sonnet-20240620-v1:0")
 dspy.settings.configure(lm=lm)
 dspy.settings.configure
 
-sentence = "it's a charming and often affecting journey."  # example from the SST-2 dataset.
 classify = dspy.Predict('sentence -> sentiment')
+sentence = "it's a charming and often affecting journey."  # example from the SST-2 dataset.
 response = classify(sentence=sentence)
 
 print(response)
+
+print(response.sentiment)
 
 #lm.inspect_history(n=1)
 
@@ -24,10 +25,12 @@ print(response)
 
 #lm.inspect_history(n=1)
 
+
 fact_checking = dspy.ChainOfThought('claims -> verdicts: list[bool]')
 response = fact_checking(claims=["Python was released in 1991.", "Python is a compiled language."])
 
 print(response)
+
 
 class CheckCitationFaithfulness(dspy.Signature):
     """Verify that the text is based on the provided context."""
@@ -36,9 +39,9 @@ class CheckCitationFaithfulness(dspy.Signature):
     text = dspy.InputField()
     faithfulness = dspy.OutputField(desc="True/False indicating if text is faithful to context")
 
-context = "The 21-year-old made seven appearances for the Hammers and netted his only goal for them in a Europa League qualification round match against Andorran side FC Lustrains last season. Lee had two loan spells in League One last term, with Blackpool and then Colchester United. He scored twice for the U's but was unable to save them from relegation. The length of Lee's contract with the promoted Tykes has not been revealed. Find all the latest football transfers on our dedicated page."
+context = "According to Roman tradition, the city of Rome was founded by twin brothers Romulus and Remus in 753 BCE. The twins were said to be the sons of Mars, the god of war, and were raised by a she-wolf. As adults, they decided to found a city, but disagreed on its location. Romulus wanted to build on the Palatine Hill, while Remus preferred the Aventine Hill. To settle their dispute, they agreed to consult augury, but this led to a quarrel in which Romulus killed Remus. Romulus then became the first king of Rome, which was named after him. The early Roman state was likely a kingdom, before transitioning to a republic around 509 BCE."
 
-text = "Lee scored 3 goals for Colchester United."
+text = "Rome was founded by Romulus alone in 750 BCE."
 
 faithfulness = dspy.ChainOfThought(CheckCitationFaithfulness)
 response = faithfulness(context=context, text=text)
@@ -52,7 +55,7 @@ class BasicQA(dspy.Signature):
     question = dspy.InputField()
     answer = dspy.OutputField(desc="often between 1 and 5 words", prefix="Question's Answer:")
 
-#Pass signature to ChainOfThought module
+# Pass signature to ChainOfThought module
 generate_answer = dspy.ChainOfThoughtWithHint(BasicQA)
 
 # Call the predictor on a particular input alongside a hint.
@@ -64,15 +67,13 @@ print(f"Question: {question}")
 print(f"Predicted Answer: {pred.answer}")
 
 
-
-#Define a simple signature for basic question answering
+# Define a simple signature for basic question answering
 generate_answer_signature = dspy.Signature("question -> answer")
-#generate_answer_signature.attach(question=("Question:", "")).attach(answer=("Answer:", "often between 1 and 5 words"))
 
 # Pass signature to ProgramOfThought Module
 pot = dspy.ProgramOfThought(generate_answer_signature)
 
-#Call the ProgramOfThought module on a particular input
+# Call the ProgramOfThought module on a particular input
 question = 'Sarah has 5 apples. She buys 7 more apples from the store. How many apples does Sarah have now?'
 response = pot(question=question)
 
@@ -80,9 +81,11 @@ print(f"Question: {question}")
 print(f"Final Predicted Answer (after ProgramOfThought process): {response.answer}")
 
 # To see the PYthon code that was generated
-#lm.inspect_history(n=4)
+
+lm.inspect_history(n=4)
 
 print(response)
+
 
 # Define a simple signature for basic question answering
 class BasicQA(dspy.Signature):
@@ -119,8 +122,6 @@ print(f"Top {retriever.k} passages for question: {query} \n", '-' * 30, '\n')
 
 for idx, passage in enumerate(topK_passages):
     print(f'{idx+1}]', passage, '\n')
-
-
 
 
 from dspy.datasets.gsm8k import GSM8K, gsm8k_metric

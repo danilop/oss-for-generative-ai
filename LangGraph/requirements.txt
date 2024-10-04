@@ -1,4 +1,5 @@
 langgraph
 langchain-aws
 langchain-community
-duckduckgo-search
+duckduckgo-search # For a search tool
+transformers # For tokens

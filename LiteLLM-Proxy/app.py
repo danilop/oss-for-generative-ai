@@ -1,6 +1,6 @@
 import ell
+import openai
 
-import openai # openai v1.0.0+
 client = openai.OpenAI(api_key="anything",base_url="http://0.0.0.0:8000") # set proxy to base_url
 
 

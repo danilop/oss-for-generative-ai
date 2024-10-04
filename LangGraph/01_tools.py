@@ -17,13 +17,13 @@ def fake_search(query: str):
         return "It's 60 degrees and foggy."
     return "It's 90 degrees and sunny."
 
+# search = fake_search()
 search = DuckDuckGoSearchRun()
 
 tools = [search]
 
 tool_node = ToolNode(tools)
 
-#model = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0).bind_tools(tools)
 
 AWS_REGION = "us-east-1"
 MODEL_ID = "us.anthropic.claude-3-5-sonnet-20240620-v1:0"
@@ -88,6 +88,14 @@ checkpointer = MemorySaver()
 # meaning you can use it as you would any other runnable.
 # Note that we're (optionally) passing the memory when compiling the graph
 app = workflow.compile(checkpointer=checkpointer)
+
+
+### START - To draw the graph
+app.get_graph().draw_mermaid_png(
+    output_file_path="01_tools_graph.png",
+)
+### END - To draw the graph
+
 
 # Use the Runnable
 final_state = app.invoke(

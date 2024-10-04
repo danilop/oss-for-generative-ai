@@ -1,9 +1,12 @@
+from typing import Sequence
+from typing_extensions import Annotated, TypedDict
+
 from langchain_aws import ChatBedrockConverse
-from langchain_core.messages import HumanMessage
-from langchain_core.messages import AIMessage
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, trim_messages
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import START, MessagesState, StateGraph
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langgraph.graph.message import add_messages
 
 AWS_REGION = "us-east-1"
 MODEL_ID = "us.anthropic.claude-3-5-sonnet-20240620-v1:0"
@@ -14,7 +17,6 @@ model = ChatBedrockConverse(
     max_tokens=None,
     region_name=AWS_REGION,
 )
-
 
 print("Invoking model with single message")
 
@@ -38,26 +40,20 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-#           "You talk like a pirate. Answer all questions to the best of your ability.",
             "You are a helpful assistant. Answer all questions to the best of your ability in {language}.",
         ),
         MessagesPlaceholder(variable_name="messages"),
     ]
 )
 
-from typing import Sequence
+# Define a new graph
 
-from langchain_core.messages import BaseMessage
-from langgraph.graph.message import add_messages
-from typing_extensions import Annotated, TypedDict
-from langchain_core.messages import SystemMessage, trim_messages
+# workflow = StateGraph(state_schema=MessagesState)
 
 class State(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     language: str
 
-# Define a new graph
-#workflow = StateGraph(state_schema=MessagesState)
 workflow = StateGraph(state_schema=State)
 
 trimmer = trim_messages(
@@ -70,7 +66,7 @@ trimmer = trim_messages(
 )
 
 # Define the function that calls the model
-#def call_model(state: MessagesState):
+# def call_model(state: MessagesState):
 def call_model(state: State):
     chain = prompt | model
     #response = chain.invoke(state)
@@ -87,6 +83,14 @@ workflow.add_node("model", call_model)
 # Add memory
 memory = MemorySaver()
 app = workflow.compile(checkpointer=memory)
+
+
+### START - To draw the graph
+app.get_graph().draw_mermaid_png(
+    output_file_path="02_chatbot_graph.png",
+)
+### END - To draw the graph
+
 
 config = {"configurable": {"thread_id": "abc123"}}
 

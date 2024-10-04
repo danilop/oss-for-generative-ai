@@ -3,7 +3,7 @@ from litellm import completion
 
 MODEL_ID = "bedrock/us.anthropic.claude-3-5-sonnet-20240620-v1:0"
 
-messages = [{ "content": "Tell me a nice story about Julius Caesar.","role": "user"}]
+messages = [{"role": "user", "content": "Tell me a nice story about Julius Caesar."}]
 
 print("Invoking model")
 

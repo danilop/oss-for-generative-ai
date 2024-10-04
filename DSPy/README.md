@@ -4,7 +4,10 @@ This directory demonstrates how to use DSPy with Amazon Bedrock for solving AI t
 
 ## Example
 
-- **app.py**: Demonstrates various DSPy modules and techniques using Amazon Bedrock
+- **01_signature.py**: Demonstrates using DSPy signatures with Amazon Bedrock
+- **02_class.py**: Demonstrates using classes to define DSPy signatures
+- **03_retriever.py**: Demonstrates using DSPy retriever
+- **04_optimizer.py**: Demonstrates using DSPy optimizer (formerly teleprompter)
 
 ## Getting Started
 
@@ -17,9 +20,9 @@ This directory demonstrates how to use DSPy with Amazon Bedrock for solving AI t
 
 3. Run the example script:
    ```
-   python app.py
+   python <script name>.py
    ```
 
 ## Configuration
 
-The example uses the Claude 3 Sonnet model via Amazon Bedrock. The model configuration is handled through DSPy's integration with Bedrock.
+The example uses the Claude 3.5 Sonnet model via Amazon Bedrock. The model configuration is handled through DSPy's integration with Bedrock.

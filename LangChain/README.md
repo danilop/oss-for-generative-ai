@@ -4,12 +4,11 @@ This directory demonstrates how to use LangChain with Amazon Bedrock, focusing o
 
 ## Examples
 
-1. **invocation.py**: Basic model invocation
-2. **chain.py**: Chaining prompts
-3. **api.py**: Building an API
-4. **client.py**: Creating a client
-5. **chatbot.py**: Implementing a chatbot
-6. **bedrock_agent.py**: Using Bedrock Agents
+1. **01_invocation.py**: Basic model invocation
+2. **02_chain.py**: Chaining prompts
+3. **03_api.py**: Building an API
+4. **04_client.py**: Creating a client
+6. **05_bedrock_agent.py**: Using Bedrock Agents
 
 ## Getting Started
 
@@ -27,5 +26,5 @@ This directory demonstrates how to use LangChain with Amazon Bedrock, focusing o
 
 ## Configuration
 
-The examples use the Claude 3 Sonnet model via Amazon Bedrock. The model ID and region are specified in each script.
+The examples use the Claude 3.5 Sonnet model via Amazon Bedrock. The model ID and region are specified in each script.
 

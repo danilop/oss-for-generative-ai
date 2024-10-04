@@ -1,5 +1,8 @@
 # DSPy local cache
 local_cache/
+data/
+storage_rag/
+storage_agent/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

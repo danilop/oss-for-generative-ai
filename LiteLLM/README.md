@@ -5,7 +5,6 @@ This directory demonstrates how to use LiteLLM with Amazon Bedrock to standardiz
 ## Examples
 
 - **app.py**: Shows basic usage of LiteLLM with Amazon Bedrock
-- **LiteLLM-Proxy/**: Contains examples of using LiteLLM as a proxy server
 
 ## Getting Started
 
@@ -21,11 +20,6 @@ This directory demonstrates how to use LiteLLM with Amazon Bedrock to standardiz
    python app.py
    ```
 
-4. To run the proxy server (in the LiteLLM-Proxy directory):
-   ```
-   ./proxy.sh
-   ```
-
 ## Configuration
 
-The examples use the Claude 3 Sonnet model via Amazon Bedrock. The model ID is specified in each script or configuration file.
+The examples use the Claude 3.5 Sonnet model via Amazon Bedrock. The model ID is specified in each script or configuration file.

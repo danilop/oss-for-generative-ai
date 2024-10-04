@@ -8,6 +8,9 @@ from langchain.agents import AgentExecutor
 from langchain_aws.agents import BedrockAgentsRunnable
 
 
+AWS_REGION = 'us-west-2'
+
+
 @tool("AssetDetail::getAssetValue")
 def get_asset_value(asset_holder_id: str) -> str:
     """
@@ -113,7 +116,7 @@ def _create_agent_role(
 print("Creating agent role...")
 
 agent_resource_role_arn = _create_agent_role(
-            agent_region='us-west-2',
+            agent_region=AWS_REGION,
             foundational_model=foundational_model)
 
 print(f"Agent resource role ARN: {agent_resource_role_arn}")

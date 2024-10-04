@@ -4,7 +4,7 @@ This directory demonstrates how to use Haystack with Amazon Bedrock for building
 
 ## Example
 
-- **app.py**: Demonstrates building a RAG pipeline using Haystack and Amazon Bedrock
+- **01_rag.py**: Demonstrates building a RAG pipeline using Haystack and Amazon Bedrock
 
 ## Getting Started
 
@@ -17,9 +17,9 @@ This directory demonstrates how to use Haystack with Amazon Bedrock for building
 
 3. Run the example script:
    ```
-   python app.py
+   python <script_name>.py
    ```
 
 ## Configuration
 
-The example uses the Claude 3 Sonnet model via Amazon Bedrock. The model ID and region are specified in the script.
+The example uses the Claude 3.5 Sonnet model via Amazon Bedrock. The model ID and region are specified in the script.

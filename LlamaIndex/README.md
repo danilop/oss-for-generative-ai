@@ -4,8 +4,8 @@ This directory demonstrates how to use LlamaIndex with Amazon Bedrock for buildi
 
 ## Examples
 
-- **rag.py**: Demonstrates Retrieval-Augmented Generation (RAG)
-- **agent.py**: Shows how to build an agent using LlamaIndex and Amazon Bedrock
+- **01_rag.py**: Demonstrates Retrieval-Augmented Generation (RAG)
+- **02_agent.py**: Shows how to build an agent using LlamaIndex and Amazon Bedrock
 
 ## Getting Started
 
