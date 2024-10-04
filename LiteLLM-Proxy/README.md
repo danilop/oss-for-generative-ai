@@ -1,6 +1,6 @@
 # LiteLLM Proxy with Amazon Bedrock
 
-**Currently not working***
+**Currently not working**
 
 This directory demonstrates how to set up and use a LiteLLM proxy server with Amazon Bedrock, allowing you to standardize API calls to different LLM providers.
 
