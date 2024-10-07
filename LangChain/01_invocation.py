@@ -21,6 +21,5 @@ messages = [
     ),
 ]
 ai_msg = model.invoke(messages)
-ai_msg
 
 print(ai_msg.content)

@@ -23,9 +23,9 @@ print(f"The sentiment is: {response.sentiment}")
 
 # Chain of Thought
 
-document = """The 21-year-old made seven appearances for the Hammers and netted his only goal for them in a Europa League qualification round match against Andorran side FC Lustrains last season. Lee had two loan spells in League One last term, with Blackpool and then Colchester United. He scored twice for the U's but was unable to save them from relegation. The length of Lee's contract with the promoted Tykes has not been revealed. Find all the latest football transfers on our dedicated page."""
-
 summarize = dspy.ChainOfThought('document -> summary')
+
+document = """The 21-year-old made seven appearances for the Hammers and netted his only goal for them in a Europa League qualification round match against Andorran side FC Lustrains last season. Lee had two loan spells in League One last term, with Blackpool and then Colchester United. He scored twice for the U's but was unable to save them from relegation. The length of Lee's contract with the promoted Tykes has not been revealed. Find all the latest football transfers on our dedicated page."""
 
 response = summarize(document=document)
 
@@ -39,7 +39,7 @@ claims = ["Python was released in 1991.", "Python is a compiled language."]
 
 fact_checking = dspy.ChainOfThought('claims -> verdicts: list[bool]')
 
-response = fact_checking(claims=["Python was released in 1991.", "Python is a compiled language."])
+response = fact_checking(claims=claims)
 
 print(response)
 
@@ -52,14 +52,14 @@ generate_answer_signature = dspy.Signature("question -> answer")
 pot = dspy.ProgramOfThought(generate_answer_signature)
 
 # Call the ProgramOfThought module on a particular input
-question = 'Sarah has 5 apples. She buys 7 more apples from the store. How many apples does Sarah have now?'
+question = 'Sarah has 5 apples. She buys 7 more apples from the store and loses one on her way back. How many apples does Sarah have now?'
 response = pot(question=question)
 
 print(f"Question: {question}")
 print(f"Final Predicted Answer (after ProgramOfThought process): {response.answer}")
 
-# To see the PYthon code that was generated
+# To see the Python code that was generated
 
-lm.inspect_history(n=4)
+lm.inspect_history(n=1)
 
 print(response)

@@ -121,5 +121,7 @@ for chunk, metadata in app.stream(
     stream_mode="messages",
 ):
     if isinstance(chunk, AIMessage):  # Filter to just model responses
-        print(chunk.content, end="|")
+        for content in chunk.content:
+            if 'type' in content and content['type'] == 'text':
+                print(content['text'], end="|")
 

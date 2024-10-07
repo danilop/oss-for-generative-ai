@@ -8,7 +8,7 @@ from langchain.agents import AgentExecutor
 from langchain_aws.agents import BedrockAgentsRunnable
 
 
-AWS_REGION = 'us-west-2'
+AWS_REGION = 'us-east-1'
 
 
 @tool("AssetDetail::getAssetValue")
@@ -45,7 +45,7 @@ def get_mortgage_rate(asset_holder_id: str, asset_value: str) -> str:
 
 tools = [get_asset_value, get_mortgage_rate]
 
-foundational_model = 'us.anthropic.claude-3-5-sonnet-20240620-v1:0'
+foundational_model = 'anthropic.claude-3-5-sonnet-20240620-v1:0'
 
 instructions="You are an agent who helps with getting the mortgage rate based on the current asset valuation"
 

@@ -41,21 +41,3 @@ pred = generate_answer(question=question, hint=hint)
 
 print(f"Question: {question}")
 print(f"Predicted Answer: {pred.answer}")
-
-# ReAct
-
-# Define a simple signature for basic question answering
-class BasicQA(dspy.Signature):
-    """Answer questions with short factoid answers."""
-    question = dspy.InputField()
-    answer = dspy.OutputField(desc="often between 1 and 5 words")
-
-# Pass signature to ReAct module
-react_module = dspy.ReAct(BasicQA)
-
-# Call the ReAct module on a particular input
-question = 'Aside from the Apple Remote, what other devices can control the program Apple Remote was originally designed to interact with?'
-response = react_module(question=question)
-
-print(f"Question: {question}")
-print(f"Final Predicted Answer (after ReAct process): {response.answer}")

@@ -1,7 +1,7 @@
 import os
 
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
-from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, load_index_from_storage
+from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, Settings, load_index_from_storage
 from llama_index.llms.bedrock_converse import BedrockConverse
 from llama_index.embeddings.bedrock import BedrockEmbedding
 from llama_index.core.agent import FunctionCallingAgent
@@ -27,9 +27,11 @@ add_tool = FunctionTool.from_defaults(fn=add)
 embed_model = BedrockEmbedding(model="amazon.titan-embed-g1-text-02")
 
 query_llm = BedrockConverse(
-    model="anthropic.claude-3-haiku-20240307-v1:0",
+    model="anthropic.claude-3-5-sonnet-20240620-v1:0",
     region_name=AWS_REGION,
 )
+
+years = [2021]
 
 PERSIST_DIR = "./storage_agent"
 if not os.path.exists(PERSIST_DIR):
@@ -51,7 +53,7 @@ else:
     print("Loading existing index...")
     # Load the existing index
     storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
-    uber_index = load_index_from_storage(storage_context)
+    uber_index = load_index_from_storage(storage_context, embed_model=embed_model)
 
 # Build query engine
 print("Building query engine...")
@@ -83,5 +85,5 @@ for query in queries:
 
     response = agent.chat(query)
 
-    print(f"Response: {str(response)}")
+    print(f"Response: {response}")
     print(f"Sources: {response.sources}")
