@@ -47,7 +47,7 @@ tools = [get_asset_value, get_mortgage_rate]
 
 foundational_model = 'anthropic.claude-3-5-sonnet-20240620-v1:0'
 
-instructions="You are an agent who helps with getting the mortgage rate based on the current asset valuation"
+instruction="You are an agent who helps with getting the mortgage rate based on the current asset valuation"
 
 
 def _create_agent_role(
@@ -127,7 +127,7 @@ agent = BedrockAgentsRunnable.create_agent(
     agent_name="mortgage_interest_rate_agent",
     agent_resource_role_arn=agent_resource_role_arn,
     foundation_model=foundational_model,
-    instruction="You are an agent who helps with getting the mortgage rate based on the current asset valuation",
+    instruction=instruction,
     tools=tools,
 )
 
