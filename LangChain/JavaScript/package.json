@@ -1,0 +1,15 @@
+{
+  "name": "langchain-bedrock-demo",
+  "version": "1.0.0",
+  "description": "eno add npm:@langchain/aws",
+  "main": "invocation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@langchain/aws": "^0.1.1"
+  }
+}

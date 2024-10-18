@@ -1,3 +1,6 @@
+# JavaScript / Node.js
+node_modules/
+
 # DSPy local cache
 local_cache/
 data/

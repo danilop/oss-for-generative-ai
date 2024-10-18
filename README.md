@@ -34,12 +34,13 @@ To run the examples:
 
 1. Clone this repository
 2. Navigate to the desired framework's directory
-3. Create a virtual environment: `python -m venv .venv` (recommended)
-4. Activate the virtual environment:
-   - On Windows: `.venv\Scripts\activate`
-   - On macOS and Linux: `source .venv/bin/activate`
-5. Install the required dependencies: `pip install -r requirements.txt`
-6. Run the example scripts
+3. For Python projects:
+   - Create a virtual environment: `python -m venv .venv` (recommended)
+   - Activate the virtual environment:
+     - On Windows: `.venv\Scripts\activate`
+     - On macOS and Linux: `source .venv/bin/activate`
+   - Install the required dependencies: `pip install -r requirements.txt`
+   - Run the example scripts
 
 ## Configuration
 
